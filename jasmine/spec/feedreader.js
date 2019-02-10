@@ -54,25 +54,24 @@ $(function() {
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The Menu', function() {
+        // init these in top scope for accessibility to lower level functions
+        let hidden_class, $body;
 
-        // get the menu dom element
-        const menu = document.querySelector('.slide-menu');
-        const hidden_class = 'menu-hidden';
+        beforeEach(function() {
+          hidden_class = 'menu-hidden';
+          // live jquery obj of the body element updates automatically with changes
+          $body = $('body');
+        });
 
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-         it('body element should have menu-hidden class by default and be slide menu translate3ded off screen', function() {
-           // grab the body dom element
-           const body = document.querySelector('body');
-           // get class name string
-           const body_class = body.className;
+         it('should have body element with menu-hidden class by default and be slide menu translate3ded off screen', function() {
            // check menu-hidden class was applied to body which hides the menu
-           const body_contains_hidden = body_class.includes(hidden_class);
+           let body_contains_hidden = $body.hasClass(hidden_class);
            expect(body_contains_hidden).toBe(true);
-
          });
 
          /* TODO: Write a test that ensures the menu changes
@@ -80,6 +79,25 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+          it('should not have hidden class on body after click event and should have hidden class when clicked again', function() {
+            // get the menu button dom element
+            const $menu_button = $('.menu-icon-link');
+
+            // trigger a click event on the menu button
+            $menu_button.triggerHandler('click');
+            // test if body has hidden class
+            let body_contains_hidden = $body.hasClass(hidden_class);
+            // shouldnt have hidden class after click
+            expect(body_contains_hidden).not.toBe(true);
+
+            // trigger another click
+            $menu_button.triggerHandler('click');
+            // test for hidden class again
+            body_contains_hidden = $body.hasClass(hidden_class);
+            // body should have hidden now
+            expect(body_contains_hidden).toBe(true);
+          });
+
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
