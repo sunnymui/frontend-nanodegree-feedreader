@@ -32,10 +32,10 @@ $(function() {
          * and that the URL is not empty.
          */
          it('has each feed contain a defined url that is not empty', function() {
-           allFeeds.forEach(function(current_feed){
+           for (let current_feed of allFeeds) {
              expect(current_feed.url).toBeDefined();
-             expect(current_feed.url.length).not.toBe(0);
-           });
+             expect(current_feed.url).not.toBe('');
+           }
          });
 
 
@@ -43,22 +43,44 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+         it('has each feed contain a defined name that is not empty', function() {
+           for (let current_feed of allFeeds) {
+             expect(current_feed.name).toBeDefined();
+             expect(current_feed.name).not.toBe('');
+           }
+         });
     });
 
 
     /* TODO: Write a new test suite named "The menu" */
+    describe('The Menu', function() {
+
+        // get the menu dom element
+        const menu = document.querySelector('.slide-menu');
+        const hidden_class = 'menu-hidden';
 
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+         it('body element should have menu-hidden class by default and be slide menu translate3ded off screen', function() {
+           // grab the body dom element
+           const body = document.querySelector('body');
+           // get class name string
+           const body_class = body.className;
+           // check menu-hidden class was applied to body which hides the menu
+           const body_contains_hidden = body_class.includes(hidden_class);
+           expect(body_contains_hidden).toBe(true);
+
+         });
 
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+    });
 
     /* TODO: Write a new test suite named "Initial Entries" */
 
