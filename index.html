@@ -13,11 +13,13 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.min.css">
 
+        <!-- testing framework js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine-html.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/boot.min.js"></script>
     </head>
     <body class="menu-hidden">
+        <!-- the top nav bar -->
         <div class="header">
             <a href="#" class="menu-icon-link">
                 <i class="icon-list"></i>
@@ -26,14 +28,19 @@
             <h1 class="header-title">Feeds</h1>
         </div>
 
+        <!-- the off canvas slide in menu options -->
         <div class="slide-menu">
             <ul class="feed-list"></ul>
         </div>
 
+        <!-- the actual newsfeed wrapper container element -->
         <div class="feed"></div>
 
+        <!-- generates a feed item -->
         <script class="tpl-entry" type="text/x-handlebars-template">
+            <!-- link wrapper per feed item -->
             <a class="entry-link" href="{{link}}">
+                <!-- feed item content -->
                 <article class="entry">
                     <h2>{{title}}</h2>
                     <p>{{contentSnippet}}</p>
@@ -41,6 +48,7 @@
             </a>
         </script>
 
+        <!-- generates a content item link for the slide in menu -->
         <script class="tpl-feed-list-item" type="text/x-handlebars-template">
             <li>
                 <a href="#" data-id="{{id}}">{{name}}</a>
@@ -49,7 +57,9 @@
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- templating engine -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+        <!-- loads the google js client library which lets you interact with google apis to get data for web apps -->
         <script src="http://google.com/jsapi"></script>
 
         <script src="js/app.js"></script>

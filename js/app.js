@@ -51,10 +51,14 @@ function init() {
        contentType:"application/json",
        success: function (result, status){
 
+                     // the dom element for the container of whole feedreader app
                  var container = $('.feed'),
+                     // the h1 element in top navbar that has the name of the rss feed
                      title = $('.header-title'),
+                     // feed entries data array
                      entries = result.feed.entries,
                      entriesLen = entries.length,
+                     // seems to compile the template view  for the main list items
                      entryTemplate = Handlebars.compile($('.tpl-entry').html());
 
                  title.html(feedName);   // Set the header text
@@ -66,9 +70,11 @@ function init() {
                   * the resulting HTML to the list of entries on the page.
                   */
                  entries.forEach(function(entry) {
+                    // where the data gets bound to the an entry item view and generates each thing
                      container.append(entryTemplate(entry));
                  });
 
+                 // check if a callback was passed then run
                  if (cb) {
                      cb();
                  }
@@ -92,11 +98,17 @@ google.setOnLoadCallback(init);
  * place our code in the $() function to ensure it doesn't execute
  * until the DOM is ready.
  */
+
+ // generates the off canvas slide in menu items for selecting rss feeds to load in the main reader view
 $(function() {
     var container = $('.feed'),
+        // container for side menu items
         feedList = $('.feed-list'),
+        // sidebar menu item template
         feedItemTemplate = Handlebars.compile($('.tpl-feed-list-item').html()),
+        // default feed to load
         feedId = 0,
+        // button to toggle the slide in side menu
         menuIcon = $('.menu-icon-link');
 
     /* Loop through all of our feeds, assigning an id property to
@@ -106,7 +118,11 @@ $(function() {
      * available feeds within the menu.
      */
     allFeeds.forEach(function(feed) {
+
+        // adds the id property to the existing feed obj in allfeeds array
+        // id is put in the data-id attribute in the menu item template
         feed.id = feedId;
+        // adds a sidebar menu item for the current feed item from allfeeds
         feedList.append(feedItemTemplate(feed));
 
         feedId++;
@@ -120,6 +136,7 @@ $(function() {
         var item = $(this);
 
         $('body').addClass('menu-hidden');
+        // loads the corresponding feed based on the id in data-id
         loadFeed(item.data('id'));
         return false;
     });
