@@ -27,7 +27,7 @@ Alternatively, you could run it locally by cloning the repository to your comput
 
 All of the test specs and code are written in `jasmine/spec/feedreader.js`. If you want to add your own additional tests, you would write them in that file.
 
-If you want to set up tests on a different page, you need to include the Jasmine library files and your test spec code on that page.
+If you want to set up tests on a different page, you need to include the Jasmine library scripts and files, plus your test spec code on that page. If you don't want to download anything, you can just load it from a CDN--instructions for that in the next section.
 
 For documentation on how to write tests, [read the official guide.](https://jasmine.github.io/tutorials/your_first_suite)
 
