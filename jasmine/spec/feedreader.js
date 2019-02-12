@@ -21,7 +21,7 @@ $(function() {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
-        it('has starting allFeeds array defined and not empty', function() {
+        it('has the starting allFeeds array defined with something in there', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -143,6 +143,7 @@ $(function() {
 
            // check that the first feed's content is not the same as the second feed
            expect(initial_feed_content).not.toBe(next_feed_content);
+           // signal done to complete the spec
            done();
          });
 
